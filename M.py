@@ -38,6 +38,10 @@ X = df[['revenue_growth', 'gross_profit_margin']]
 y = df['ev_ebitda']
 
 # ... (Model training as before) ...
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+model = LinearRegression()
+model.fit(X_train, y_train)
 
 # --- Prediction and Output ---
 st.header("Prediction")
