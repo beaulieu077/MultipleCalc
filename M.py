@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
 
 # --- Title ---
 st.title("Company Valuation Tool")
@@ -33,6 +32,15 @@ with st.form("data_entry"):
 # Convert data to DataFrame
 df = pd.DataFrame(st.session_state.data)
 st.write(df)  # Display the entered data
+
+# --- Reset Button ---
+if st.button("Reset Data"):
+    st.session_state.data = {
+        'revenue_growth': [],
+        'gross_profit_margin': [],
+        'ev_ebitda': []
+    }
+    st.experimental_rerun()  # Rerun the app to clear the displayed data
 
 # --- Regression Analysis ---
 X = df[['revenue_growth', 'gross_profit_margin']]
